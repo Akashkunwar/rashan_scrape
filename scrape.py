@@ -10,7 +10,8 @@ import csv
 chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
 chrome_options.headless = True
-driver = Chrome(chrome_options=chrome_options)
+PATH = 'C:\chromedriver.exe'
+driver = Chrome(PATH,chrome_options=chrome_options)
 
 driver.get('http://epds.bihar.gov.in/DistrictWiseRationCardDetailsBH.aspx')
 driver.find_element(By.ID, 'btnLoad').click()
@@ -18,7 +19,7 @@ driver.find_element(By.ID, 'btnLoad').click()
 soup = BeautifulSoup(driver.page_source, features="html5lib")
 rows = soup.find_all('tr')
 
-f = open('data.csv', 'w')
+f = open('data.csv', 'w', encoding='utf-8')
 writer = csv.writer(f)
 header = ['District',
           'Block',
@@ -32,9 +33,11 @@ header = ['District',
           'FPS Dealer']
 writer.writerow(header)
 count = 0
-for row in rows:
+for row in rows[20:]:
     tds = row.find_all('td')
     if len(tds) == 10:
+        print(rows.index(row))
+        print(tds[1].text.strip())
         district_name = tds[1].text.strip()
         district_link = tds[2].find('a')['id']
         driver.find_element(By.ID, district_link).click()
@@ -87,11 +90,14 @@ for row in rows:
                                 soup = BeautifulSoup(
                                     driver.page_source, features="html5lib")
                                 ration_page_rows = soup.find_all('tr')
+                                # print(ration_page_rows)
                                 for ration_page_row in ration_page_rows:
                                     rations = ration_page_row.find_all(
                                         'td')
+
                                     if len(rations) == 7:
                                         try:
+                                            print(rations[1].text)
                                             ration_card = rations[1].text.strip(
                                             )
                                             card_type = rations[2].text.strip(
@@ -121,6 +127,7 @@ for row in rows:
                                             writer.writerow(row)
                                             count += 1
                                             print(count)
+                                            print(final_data)
                                         except:
                                             continue
                                 if total_pages == 1:
