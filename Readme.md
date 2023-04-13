@@ -1,5 +1,5 @@
 
-# Web Scraping with Selenium and BeautifulSoup
+# Ration card of bihar Scraping with Selenium and BeautifulSoup
 
 This script scrapes data from http://epds.bihar.gov.in/DistrictWiseRationCardDetailsBH.aspx using Selenium and BeautifulSoup.
 
