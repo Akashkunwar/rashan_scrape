@@ -12,7 +12,7 @@ This script scrapes data from http://epds.bihar.gov.in/DistrictWiseRationCardDet
 ## Installation
 
 1. Clone this repository:
->git clone https://github.com/your_username/web-scraping.git
+>git clone [https://github.com/your_username/web-scraping.git](https://github.com/Akashkunwar/rashan_scrape.git)
  
  
  2. Install the required libraries:
@@ -22,7 +22,7 @@ This script scrapes data from http://epds.bihar.gov.in/DistrictWiseRationCardDet
 
 ## Usage
 
-1. Run the script: `python scraper.py`
+1. Run the script: `scrape.py`
 
 2. The script will scrape the data and save it to `data.csv` in the same directory.
 
